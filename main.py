@@ -34,12 +34,12 @@ class Main(object):
         self.screen.fill((200, 248, 254))
         # 点
         self.point_obj.draw(self.screen)
-        # 蛇
-        # if self.count % (frame_num // 2) == 0:
-        #     self.snake_obj.draw(self.screen, self.point_obj)
-        obj = self.snake_obj
+        # 主蛇渲染
+        self.snake_obj.draw(self.point_obj)
+        # 副蛇渲染
+        obj = self.snake_obj.next
         while obj:
-            obj.draw(self.point_obj)
+            obj.draw()
             obj = obj.next
         # 得分
         font = pg.font.SysFont("font1", size=30)
@@ -63,7 +63,6 @@ class Main(object):
                 body_obj = body_obj.next
 
     def run(self):
-        self.count = 0
         while not self.exit_flag:
             # 帧率
             self.clock_obj.tick(frame_num)
@@ -88,10 +87,6 @@ class Main(object):
                             self.snake_obj.change_direction('right')
             # 渲染
             self.draw()
-
-            self.count += 1
-            if self.count > frame_num - 1:
-                self.count = 0
 
 
 if __name__ == '__main__':

@@ -130,7 +130,7 @@ class SnakeTwo(Snake):
         else:
             self.change_flag = True
 
-    def draw(self, point_obj):
+    def draw(self):
         # 改变位置
         if self.start_flag:
             self.change_direction()
