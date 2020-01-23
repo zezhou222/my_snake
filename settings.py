@@ -3,7 +3,8 @@ import os
 width = 500
 height = 500
 
-frame_num = 8
+speed_frame_num = 12
+frame_num = 6
 
 lattice_size = 20
 

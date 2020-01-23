@@ -5,7 +5,8 @@ from point import Point
 from settings import (
     width,
     height,
-    frame_num
+    frame_num,
+    speed_frame_num
 )
 from global_func import (
     collision_detection
@@ -63,9 +64,11 @@ class Main(object):
                 body_obj = body_obj.next
 
     def run(self):
+        frame = frame_num
+
         while not self.exit_flag:
             # 帧率
-            self.clock_obj.tick(frame_num)
+            self.clock_obj.tick(frame)
             # 事件
             for event in pg.event.get():
                 # 退出事件
@@ -85,6 +88,11 @@ class Main(object):
                     elif event.key == pg.K_RIGHT:
                         if self.snake_obj.direction != 'left':
                             self.snake_obj.change_direction('right')
+            # 持续监测按键
+            if pg.key.get_pressed()[pg.K_SPACE]:
+                frame = speed_frame_num
+            else:
+                frame = frame_num
             # 渲染
             self.draw()
 
